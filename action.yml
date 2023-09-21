@@ -50,11 +50,6 @@ runs:
         cargo install --git https://github.com/coral-xyz/anchor avm --locked --force && avm install latest && avm use latest && anchor --version
       shell: bash
 
-    - name: Set program PID to devnet PID
-      run: |
-        echo "${{ inputs.pid_env_var }}=${{ inputs.pid }}" >> $GITHUB_ENV
-      shell: bash
-
     - name: Build
       run: |
         anchor build
