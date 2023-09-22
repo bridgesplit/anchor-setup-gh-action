@@ -67,9 +67,9 @@ runs:
         max_attempts: 10
         retry_on: error
         shell: bash
-        command: cargo install --git https://github.com/coral-xyz/anchor avm --locked --force && avm install latest 
+        command: cargo install --git https://github.com/coral-xyz/anchor avm --locked --force 
   
-    - run: avm use latest && anchor --version
+    - run: avm install latest && avm use latest && anchor --version
       shell: bash
 
     - run: chmod +x ~/.cargo/bin/anchor
