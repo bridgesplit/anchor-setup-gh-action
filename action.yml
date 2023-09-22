@@ -1,13 +1,5 @@
 name: Setup anchor and build and deploy program
 
-env:
-  CARGO_CACHE_PATH: |
-    ~/.cargo/bin/
-    ~/.cargo/registry/index/
-    ~/.cargo/registry/cache/
-    ~/.cargo/git/db/
-    ./target/
-
 inputs:
   rpc:
     description: 'rpc'
@@ -59,6 +51,13 @@ runs:
       with:
         path: ${{ env.CARGO_CACHE_PATH }}
         key: anchor-${{ runner.os }}-v0000-${{ hashFiles('**/Cargo.lock') }}
+      env:
+        CARGO_CACHE_PATH: |
+          ~/.cargo/bin/
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+          ./target/
 
     - uses: nick-fields/retry@v2
       if: steps.cache-anchor.outputs.cache-hit != 'true'
